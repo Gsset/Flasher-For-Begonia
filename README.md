@@ -1,7 +1,9 @@
 # Fastboot-Flasher-For-Begonia
-Batch script wich downloads and flashes MIUI and custom ROMs
 
-With one click:
+![flasher](https://user-images.githubusercontent.com/74534100/145926397-9e618d74-6712-4486-aae1-be1b67ff5075.png)
+
+
+**With one click:**
 
 -download MIUI 12.5/FW for A10, chosen custom ROM then sequentially flash everything and reboot phone into recovery
 
