@@ -15,4 +15,6 @@ Images are auto-updatable
 
 Supports Windows from 7 to 11, 32 and 64 bit
 
+Completely in Russian language
+
 In case of error just press the space
