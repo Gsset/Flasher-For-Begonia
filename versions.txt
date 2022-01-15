@@ -1,8 +1,8 @@
-+crDroid7 0+
-+crDroid6 625+
-+crDroidGSI 711+
-+Lineage 181+
-+RR 873+
-+MIUI12 1208+
-+MIUI12.5 1251+
-+script 01+
++crDroid7 0
++crDroid6 625
++crDroidGSI 711
++Lineage 181
++RR 873
++MIUI12 1208
++MIUI12.5 1251
++script 01
