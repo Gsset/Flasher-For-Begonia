@@ -1,7 +1,7 @@
 script 0.1
 MIUI12.5 1251
 crDroid_GSI 711
-crDroid 625
+crDroid6 625
 Lineage 181
 crDroid8 81
 crDroid7 0
