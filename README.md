@@ -6,3 +6,5 @@
 [Description](https://telegra.ph/Vozmozhnosti-Flasher-02-01)
 
 [Changelog](https://telegra.ph/CHejndzhlog-02-01)
+
+[Download](https://drive.google.com/file/d/1aph-zom1uNnqbLB-eQOZ7g0kpPU6L-de/view?usp=sharing)
