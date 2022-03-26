@@ -7,7 +7,7 @@ if exist !PROGRAMFILES(X86)! set bitness=64 || set bitness=32
 :Admin_permissions
 >nul 2>&1 %SYSTEMROOT%\system32\icacls.exe %SYSTEMROOT%\system32\WDI
 if %errorlevel% EQU 0 cd /d %~dp0 && goto :Moving_script
-echo.Запрос прав администратора...
+echo.╨Ч╨░╨┐╤А╨╛╤Б ╨┐╤А╨░╨▓ ╨░╨┤╨╝╨╕╨╜╨╕╤Б╤В╤А╨░╤В╨╛╤А╨░...
 echo.Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
 echo.UAC.ShellExecute "cmd.exe", "/c ""%~s0"" %bitness:"=""%", "", "runas", 1 >> %temp%\getadmin.vbs
 %temp%\getadmin.vbs
@@ -63,17 +63,17 @@ set flashing_custom=0
 set flashing_miui=0
 set rebooting_miui=0
 set "echo=echo.&&echo."
-set error_flash=echo.Ошибка прошивки
-set error_download=echo.Ошибка скачивания
-set error_unpack=echo.Ошибка распаковки
-set error_reboot=echo.Ошибка перезагрузки
-set error_erase=echo.Ошибка очистки
-set error_format=echo.Ошибка форматирования
-set error_check=echo.Ошибка проверки
+set error_flash=echo.╨Ю╤И╨╕╨▒╨║╨░ ╨┐╤А╨╛╤И╨╕╨▓╨║╨╕
+set error_download=echo.╨Ю╤И╨╕╨▒╨║╨░ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╤П
+set error_unpack=echo.╨Ю╤И╨╕╨▒╨║╨░ ╤А╨░╤Б╨┐╨░╨║╨╛╨▓╨║╨╕
+set error_reboot=echo.╨Ю╤И╨╕╨▒╨║╨░ ╨┐╨╡╤А╨╡╨╖╨░╨│╤А╤Г╨╖╨║╨╕
+set error_erase=echo.╨Ю╤И╨╕╨▒╨║╨░ ╨╛╤З╨╕╤Б╤В╨║╨╕
+set error_format=echo.╨Ю╤И╨╕╨▒╨║╨░ ╤Д╨╛╤А╨╝╨░╤В╨╕╤А╨╛╨▓╨░╨╜╨╕╤П
+set error_check=echo.╨Ю╤И╨╕╨▒╨║╨░ ╨┐╤А╨╛╨▓╨╡╤А╨║╨╕
 
 :Disclaimer
-%echo%ПРОШИВАЛЬЩИК ПРЕДНАЗНАЧЕН ИСКЛЮЧИТЕЛЬНО ДЛЯ REDMI NOTE 8 PRO^^!
-%echo%ТАКЖЕ ВАШ ЗАГРУЗЧИК ДОЛЖЕН БЫТЬ РАЗБЛОКИРОВАН^^!
+%echo%╨Я╨а╨Ю╨и╨Ш╨Т╨Р╨Ы╨м╨й╨Ш╨Ъ ╨Я╨а╨Х╨Ф╨Э╨Р╨Ч╨Э╨Р╨з╨Х╨Э ╨Ш╨б╨Ъ╨Ы╨о╨з╨Ш╨в╨Х╨Ы╨м╨Э╨Ю ╨Ф╨Ы╨п REDMI NOTE 8 PRO^^!
+%echo%╨в╨Р╨Ъ╨Ц╨Х ╨Т╨Р╨и ╨Ч╨Р╨У╨а╨г╨Ч╨з╨Ш╨Ъ ╨Ф╨Ю╨Ы╨Ц╨Х╨Э ╨С╨л╨в╨м ╨а╨Р╨Ч╨С╨Ы╨Ю╨Ъ╨Ш╨а╨Ю╨Т╨Р╨Э^^!
 echo.
 pause
 if %first_run%==0 goto :Script_update
@@ -82,7 +82,7 @@ if %first_run%==0 goto :Script_update
 CLS
 if exist Tools rmdir /s /q Tools
 mkdir Tools
-%echo%Скачивание утилит...
+%echo%╨б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡ ╤Г╤В╨╕╨╗╨╕╤В...
 echo.
 powershell -Command "& {Invoke-WebRequest !curl_link! -outfile Tools\curl.zip}" || %error_download% curl && pause>nul && goto Tools
 powershell -Command "& {Invoke-WebRequest !7z_link! -outfile Tools\7z.exe}"     || %error_download% 7zip && pause>nul && goto :Tools
@@ -93,7 +93,7 @@ powershell -Command "& {Invoke-WebRequest !7z_link! -outfile Tools\7z.exe}"     
 del /f /q Tools\platform_tools.zip
 del /f /q Tools\curl.zip
 echo Che smotrish?>Tools\ok.txt
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 if %rebooting_miui%==1 goto :Reboot_MIUI
 if %downloading_custom%==1 goto :Download_Custom
 if %downloading_miui%==1 goto :Download_MIUI
@@ -104,17 +104,17 @@ if %flashing_miui%==1 goto :Flash_MIUI
 if exist versions.txt del /f /q versions.txt
 if exist update.bat del /f /q update.bat
 powershell -Command "& {Invoke-WebRequest 'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/versions.txt' -outfile versions.txt}">nul
-if not exist versions.txt %error_download% списка версий && pause>nul && exit /b /1
+if not exist versions.txt %error_download% ╤Б╨┐╨╕╤Б╨║╨░ ╨▓╨╡╤А╤Б╨╕╨╣ && pause>nul && exit /b /1
 for /f "tokens=2 delims= " %%a in ('find /i "script" versions.txt') do set new_ver_script=%%a
 if not %new_ver_script% GTR %ver_script% goto :Adaptation
 :Question1
 CLS
-%echo%Доступна новая версия Flasher, скачать?
+%echo%╨Ф╨╛╤Б╤В╤Г╨┐╨╜╨░ ╨╜╨╛╨▓╨░╤П ╨▓╨╡╤А╤Б╨╕╤П Flasher, ╤Б╨║╨░╤З╨░╤В╤М?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p upd_script="Ваш выбор: "
+set /p upd_script="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %upd_script% NEQ 1 if %upd_script% NEQ 2 goto :Question1
 if %upd_script%==2 goto :Adaptation
 echo.@echo off^
@@ -123,7 +123,7 @@ title Flasher updater^
 
 echo.^
 
-echo.Обновление...^
+echo.╨Ю╨▒╨╜╨╛╨▓╨╗╨╡╨╜╨╕╨╡...^
 
 del /f /q flasher.bat^
 
@@ -137,34 +137,34 @@ update.bat
 exit
 
 :Adaptation
-if exist crDroid_GSI (set ex_crdroid_gsi=последующей) else (set ex_crdroid_gsi=последующим скачиванием и)
-if exist Lineage     (set ex_lineage=последующей)     else (set ex_lineage=последующим скачиванием и)
-if exist crDroid6    (set ex_crdroid6=последующей)    else (set ex_crdroid6=последующим скачиванием и)
-if exist PPUI        (set ex_ppui=последующей)        else (set ex_ppui=последующим скачиванием и)
-if exist MIUI12.5    (set ex_miui=У)                  else (set ex_miui=Скачать и у)
-if exist MIUI12      (set ex_miui12=У)                else (set ex_miui12=Скачать и у)
-REM if exist crDroid7    (set ex_crdroid7=последующей)    else (set ex_crdroid7=последующим скачиванием и)
-REM if exist RR          (set ex_rr=последующей)          else (set ex_rr=последующим скачиванием и)
-REM if exist crDroid8    (set ex_crdroid8=последующей)    else (set ex_crdroid8=последующим скачиванием и)
+if exist crDroid_GSI (set ex_crdroid_gsi=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣) else (set ex_crdroid_gsi=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+if exist Lineage     (set ex_lineage=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)     else (set ex_lineage=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+if exist crDroid6    (set ex_crdroid6=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)    else (set ex_crdroid6=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+if exist PPUI        (set ex_ppui=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)        else (set ex_ppui=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+if exist MIUI12.5    (set ex_miui=╨г)                  else (set ex_miui=╨б╨║╨░╤З╨░╤В╤М ╨╕ ╤Г)
+if exist MIUI12      (set ex_miui12=╨г)                else (set ex_miui12=╨б╨║╨░╤З╨░╤В╤М ╨╕ ╤Г)
+REM if exist crDroid7    (set ex_crdroid7=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)    else (set ex_crdroid7=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+REM if exist RR          (set ex_rr=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)          else (set ex_rr=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
+REM if exist crDroid8    (set ex_crdroid8=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣)    else (set ex_crdroid8=╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╕╨╝ ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡╨╝ ╨╕)
 
 :Choice
 CLS
 echo. 
-echo. %ex_miui%становить MIUI 12.5
-echo.1) с %ex_crdroid_gsi% установкой crDroid GSI Mod 7.xx
-echo.2) с %ex_lineage% установкой LineageOS 18.1 by bugreporter
-echo.3) с %ex_ppui% установкой PPUI A12
-REM echo.3) с %ex_crdroid8% установкой crDroid 8.x Non-CFW
-echo.4) c последующей перезагрузкой в TWRP
+echo. %ex_miui%╤Б╤В╨░╨╜╨╛╨▓╨╕╤В╤М MIUI 12.5
+echo.1) ╤Б %ex_crdroid_gsi% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ crDroid GSI Mod 7.xx
+echo.2) ╤Б %ex_lineage% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ LineageOS 18.1 by bugreporter
+echo.3) ╤Б %ex_ppui% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ PPUI A12
+REM echo.3) ╤Б %ex_crdroid8% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ crDroid 8.x Non-CFW
+echo.4) c ╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣ ╨┐╨╡╤А╨╡╨╖╨░╨│╤А╤Г╨╖╨║╨╛╨╣ ╨▓ TWRP
 echo.
-echo. %ex_miui12%становить MIUI 12
-echo.5) с %ex_crdroid6% установкой crDroid 6.25 Non-CFW
-REM echo.6) с %ex_rr% установкой Resurrection Remix OS Q
-echo.6) c последующей перезагрузкой в TWRP
+echo. %ex_miui12%╤Б╤В╨░╨╜╨╛╨▓╨╕╤В╤М MIUI 12
+echo.5) ╤Б %ex_crdroid6% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ crDroid 6.25 Non-CFW
+REM echo.6) ╤Б %ex_rr% ╤Г╤Б╤В╨░╨╜╨╛╨▓╨║╨╛╨╣ Resurrection Remix OS Q
+echo.6) c ╨┐╨╛╤Б╨╗╨╡╨┤╤Г╤О╤Й╨╡╨╣ ╨┐╨╡╤А╨╡╨╖╨░╨│╤А╤Г╨╖╨║╨╛╨╣ ╨▓ TWRP
 echo.
-echo.7) Обновить уже установленный кастом
+echo.7) ╨Ю╨▒╨╜╨╛╨▓╨╕╤В╤М ╤Г╨╢╨╡ ╤Г╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨╜╤Л╨╣ ╨║╨░╤Б╤В╨╛╨╝
 echo.
-set /p param="Ваш выбор: "
+set /p param="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %param% GTR 7 goto :Choice
 if %param% LSS 1 goto :Choice
 if %param%==7 (goto :Choice2) else (goto :Params)
@@ -177,9 +177,9 @@ echo.3) PPUI A12
 echo.4) crDroid 6.x Non-CFW
 REM echo.5) Resurrection Remix OS Q 
 REM echo.5) crDroid 8.x Non-CFW
-echo.5) Назад
+echo.5) ╨Э╨░╨╖╨░╨┤
 echo.
-set /p param="Ваш выбор: "
+set /p param="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %param% GTR 5 goto :Choice2
 if %param% LSS 1 goto :Choice2
 if %param%==5 goto :Choice
@@ -237,8 +237,8 @@ if %disc2_trigger%==1 goto :Disclaimer2
 :Authorisation
 CLS
 if exist %AppData%\.gdrive\token_v2.json goto :MIUI_update
-%echo%Для скачивания файлов с Google Drive требуется аутентификация
-%echo%Войдите в свой аккаунт в открывшемся окне браузера, разрешите доступ и вставьте код аутентификации:
+%echo%╨Ф╨╗╤П ╤Б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╤П ╤Д╨░╨╣╨╗╨╛╨▓ ╤Б Google Drive ╤В╤А╨╡╨▒╤Г╨╡╤В╤Б╤П ╨░╤Г╤В╨╡╨╜╤В╨╕╤Д╨╕╨║╨░╤Ж╨╕╤П
+%echo%╨Т╨╛╨╣╨┤╨╕╤В╨╡ ╨▓ ╤Б╨▓╨╛╨╣ ╨░╨║╨║╨░╤Г╨╜╤В ╨▓ ╨╛╤В╨║╤А╤Л╨▓╤И╨╡╨╝╤Б╤П ╨╛╨║╨╜╨╡ ╨▒╤А╨░╤Г╨╖╨╡╤А╨░, ╤А╨░╨╖╤А╨╡╤И╨╕╤В╨╡ ╨┤╨╛╤Б╤В╤Г╨┐ ╨╕ ╨▓╤Б╤В╨░╨▓╤М╤В╨╡ ╨║╨╛╨┤ ╨░╤Г╤В╨╡╨╜╤В╨╕╤Д╨╕╨║╨░╤Ж╨╕╨╕:
 echo.%gdrive% download --path %temp%\ 1I-sJEVyMfHHYrpqvxEyyZJQ_-EEy4IY5^>verification.txt>gdrive.bat
 powershell -Command "& {Start-Process %~dp0gdrive.bat -WindowStyle Hidden}"
 ping -n 2 127.0.0.1 >nul
@@ -254,33 +254,33 @@ del /f /q verification.txt && del /f /q gdrive.bat && del /f /q %temp%\dummyg
 if not exist MIUI%miui_ver%\version.txt if %clear_flash_custom%==2 if not %rom%==MIUI goto :Custom_update
 if %clear_flash_custom%==1 goto :Custom_update
 if not exist MIUI%miui_ver%\version.txt if %rom%==MIUI goto :Download_MIUI
-set /p ver_miui=<MIUI%miui_ver%\version.txt || %error_check% скачанной версии MIUI %miui_ver% && pause>nul && goto :Tools
+set /p ver_miui=<MIUI%miui_ver%\version.txt || %error_check% ╤Б╨║╨░╤З╨░╨╜╨╜╨╛╨╣ ╨▓╨╡╤А╤Б╨╕╨╕ MIUI %miui_ver% && pause>nul && goto :Tools
 for /f "tokens=2 delims= " %%a in ('find /i "MIUI%miui_ver%" versions.txt') do set new_ver_miui=%%a
 if not %new_ver_miui% GTR %ver_miui% if not %rom%==MIUI goto :Custom_update
 if not %new_ver_miui% GTR %ver_miui% if %rom%==MIUI goto :Download_MIUI
 :Question2
 CLS
-%echo%Доступна новая версия MIUI %miui_ver%, скачать?
+%echo%╨Ф╨╛╤Б╤В╤Г╨┐╨╜╨░ ╨╜╨╛╨▓╨░╤П ╨▓╨╡╤А╤Б╨╕╤П MIUI %miui_ver%, ╤Б╨║╨░╤З╨░╤В╤М?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p upd_miui="Ваш выбор: "
+set /p upd_miui="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %upd_miui% NEQ 1 if %upd_miui% NEQ 2 CLS && goto :Question2
 
 :Custom_update
 if not exist %rom%\version.txt goto :GApps_update
-set /p ver_custom=<%rom%\version.txt || %error_check% скачанной версии %display_rom% && pause>nul && goto :GApps_update
+set /p ver_custom=<%rom%\version.txt || %error_check% ╤Б╨║╨░╤З╨░╨╜╨╜╨╛╨╣ ╨▓╨╡╤А╤Б╨╕╨╕ %display_rom% && pause>nul && goto :GApps_update
 for /f "tokens=2 delims= " %%a in ('find /i "%rom%" versions.txt') do set new_ver_custom=%%a
 if not %new_ver_custom% GTR %ver_custom% goto :GApps_update
 :Question3
 CLS
-%echo%Доступна новая версия %display_rom%, скачать?
+%echo%╨Ф╨╛╤Б╤В╤Г╨┐╨╜╨░ ╨╜╨╛╨▓╨░╤П ╨▓╨╡╤А╤Б╨╕╤П %display_rom%, ╤Б╨║╨░╤З╨░╤В╤М?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p upd_custom="Ваш выбор: "
+set /p upd_custom="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %upd_custom% NEQ 1 if %upd_custom% NEQ 2 CLS && goto :Question3
 
 :GApps_update
@@ -307,12 +307,12 @@ if %clear_flash_custom%==1 goto :Download_Custom
 if %clear_flash_custom%==2 goto :Download_MIUI
 :Question4
 CLS
-%echo%Доступно обновление GApps, скачать?
+%echo%╨Ф╨╛╤Б╤В╤Г╨┐╨╜╨╛ ╨╛╨▒╨╜╨╛╨▓╨╗╨╡╨╜╨╕╨╡ GApps, ╤Б╨║╨░╤З╨░╤В╤М?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p upd_gapps="Ваш выбор: "
+set /p upd_gapps="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %upd_gapps% NEQ 1 if %upd_gapps% NEQ 2 CLS && goto :Question4
 if %upd_gapps%==1 del /f /q GApps\gapps_a%android_ver%_%gapps_ver%_%date_downloaded%.zip&& goto :GApps_Download
 if %clear_flash_custom%==1 goto :Download_Custom
@@ -322,20 +322,20 @@ if exist MIUI%miui_ver% if %upd_miui%==2 goto :Unpack_MIUI
 if exist MIUI%miui_ver% rmdir /s /q MIUI%miui_ver%
 mkdir MIUI%miui_ver%
 CLS
-%echo%Скачивание MIUI %miui_ver%...
+%echo%╨б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡ MIUI %miui_ver%...
 echo.
 set downloading_miui=1
 %gdrive% download --path "MIUI%miui_ver%" %miui_link% || %error_download% MIUI %miui_ver% && pause>nul && rmdir /s /q "%~dp0MIUI%miui_ver%" && goto :Tools
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 set downloading_miui=0
 
 :Unpack_MIUI
 if exist MIUI%miui_ver%\version.txt if not %rom%==MIUI goto :Download_Custom
 if exist MIUI%miui_ver%\version.txt goto :Flash_MIUI
 CLS
-%echo%Распаковка MIUI %miui_ver%...
+%echo%╨а╨░╤Б╨┐╨░╨║╨╛╨▓╨║╨░ MIUI %miui_ver%...
 %zip% e %~dp0MIUI%miui_ver%\MIUI%miui_ver%.7z -o%~dp0MIUI%miui_ver%\ || %error_unpack% MIUI %miui_ver% && pause>nul && rmdir /s /q "%~dp0MIUI%miui_ver%" && goto :Download_MIUI
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 if %rom%==MIUI goto :Flash_MIUI
 
 :Download_Custom
@@ -343,31 +343,31 @@ if exist %rom% if %upd_custom%==2 goto :Unpack_Custom
 if exist %rom% rmdir /s /q %rom%
 mkdir %rom%
 CLS
-%echo%Скачивание %display_rom%...
+%echo%╨б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡ %display_rom%...
 echo.
 set downloading_custom=1
 %gdrive% download --path "%rom%" %id_rom% || %error_download% %rom% && pause>nul && rmdir /s /q %rom% && goto :Tools
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 set downloading_custom=0
 
 :Unpack_Custom
 if exist %rom%\version.txt if %clear_flash_custom%==1 goto :Flash_custom
 if exist %rom%\version.txt if %clear_flash_custom%==2 goto :Flash_MIUI
 CLS
-%echo%Распаковка %display_rom%...
+%echo%╨а╨░╤Б╨┐╨░╨║╨╛╨▓╨║╨░ %display_rom%...
 %zip% e %~dp0%rom%\%rom%.7z -o%~dp0%rom%\ || %error_unpack% %rom% && pause>nul && rmdir /s /q %rom% && goto :Download_Custom
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 if %flashing_custom%==1 goto :Flash_Custom
 if %clear_flash_custom%==1 goto :Flash_Custom
 
 :Flash_MIUI
 CLS
-%echo%Проверка модели вашего смартфона и статуса блокировки загрузчика...
-%echo%Переведите ваш смартфон в режим fastboot и подключите к компьютеру
-%fastboot% getvar product  2>&1 | findstr /r /c:"^product: *begonia" || echo.Неподходящее устройство && rmdir /s /q %~dp0 && pause>nul && exit /B 1
-%fastboot% getvar unlocked 2>&1 | findstr /r /c:"^unlocked: *yes"    || echo.Загрузчик заблокирован  && rmdir /s /q %~dp0 && pause>nul && exit /B 1
+%echo%╨Я╤А╨╛╨▓╨╡╤А╨║╨░ ╨╝╨╛╨┤╨╡╨╗╨╕ ╨▓╨░╤И╨╡╨│╨╛ ╤Б╨╝╨░╤А╤В╤Д╨╛╨╜╨░ ╨╕ ╤Б╤В╨░╤В╤Г╤Б╨░ ╨▒╨╗╨╛╨║╨╕╤А╨╛╨▓╨║╨╕ ╨╖╨░╨│╤А╤Г╨╖╤З╨╕╨║╨░...
+%echo%╨Я╨╡╤А╨╡╨▓╨╡╨┤╨╕╤В╨╡ ╨▓╨░╤И ╤Б╨╝╨░╤А╤В╤Д╨╛╨╜ ╨▓ ╤А╨╡╨╢╨╕╨╝ fastboot ╨╕ ╨┐╨╛╨┤╨║╨╗╤О╤З╨╕╤В╨╡ ╨║ ╨║╨╛╨╝╨┐╤М╤О╤В╨╡╤А╤Г
+%fastboot% getvar product  2>&1 | findstr /r /c:"^product: *begonia" || echo.╨Э╨╡╨┐╨╛╨┤╤Е╨╛╨┤╤П╤Й╨╡╨╡ ╤Г╤Б╤В╤А╨╛╨╣╤Б╤В╨▓╨╛ && rmdir /s /q %~dp0 && pause>nul && exit /B 1
+%fastboot% getvar unlocked 2>&1 | findstr /r /c:"^unlocked: *yes"    || echo.╨Ч╨░╨│╤А╤Г╨╖╤З╨╕╨║ ╨╖╨░╨▒╨╗╨╛╨║╨╕╤А╨╛╨▓╨░╨╜  && rmdir /s /q %~dp0 && pause>nul && exit /B 1
 CLS
-%echo%Установка MIUI %miui_ver%...
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ MIUI %miui_ver%...
 echo.
 set flashing_miui=1
 REM goto skip1
@@ -406,16 +406,16 @@ REM goto skip1
 %fastboot% flash vbmeta        %~dp0MIUI%miui_ver%\vbmeta.img            || %error_flash% vbmeta        && goto :Error_flashing_miui
 %fastboot% flash vendor        %~dp0MIUI%miui_ver%\vendor.img            || %error_flash% vendor        && goto :Error_flashing_miui
 :skip1
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 set flashing_miui=0
 if exist %~dp0MIUI%miui_ver%\MIUI%miui_ver%.7z del /f /q %~dp0MIUI%miui_ver%\MIUI%miui_ver%.7z
 if %rom%==MIUI goto :Reboot_MIUI
 
 :Flash_Custom
 CLS
-%echo%Установка %display_rom%...
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ %display_rom%...
 set flashing_custom=1
-%fastboot% reboot bootloader || %error_reboot% в bootloader>nul && pause>nul && goto :Tools
+%fastboot% reboot bootloader || %error_reboot% ╨▓ bootloader>nul && pause>nul && goto :Tools
 ping -n 2 127.0.0.1 >nul
 REM goto skip2
 %fastboot% erase system  || %error_erase% system  && pause>nul && goto :Tools
@@ -455,28 +455,28 @@ if not %rom%==crDroid6 goto :Clearing
 if %clear_flash_custom%==2 %fastboot% -w || %error_format% data && pause>nul && goto :Tools
 if %clear_flash_custom%==1 %fastboot% erase cache || %error_erase% cache && pause>nul && goto :Tools
 :skip2
-%fastboot% reboot recovery || %error_reboot% в recovery && pause>nul && goto :Tools
-%echo%Успешно.
+%fastboot% reboot recovery || %error_reboot% ╨▓ recovery && pause>nul && goto :Tools
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 set flashing_custom=0
 del /f /s /q %~dp0%rom%\*.7z
 :DFE
 if %android_ver%==12 (CLS
-%echo%Скачать и установить DFE?
-if %clear_flash_custom%==1 %echo%Требуется только в случае, если он был установлен ранее^^!
+%echo%╨б╨║╨░╤З╨░╤В╤М ╨╕ ╤Г╤Б╤В╨░╨╜╨╛╨▓╨╕╤В╤М DFE?
+if %clear_flash_custom%==1 %echo%╨в╤А╨╡╨▒╤Г╨╡╤В╤Б╤П ╤В╨╛╨╗╤М╨║╨╛ ╨▓ ╤Б╨╗╤Г╤З╨░╨╡, ╨╡╤Б╨╗╨╕ ╨╛╨╜ ╨▒╤Л╨╗ ╤Г╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜ ╤А╨░╨╜╨╡╨╡^^!
 echo.
-echo.1^) Да
-echo.2^) Нет
+echo.1^) ╨Ф╨░
+echo.2^) ╨Э╨╡╤В
 echo.
-set /p dfe="Ваш выбор: "
+set /p dfe="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %dfe% NEQ 1 if %dfe% NEQ 2 goto :DFE
 if %dfe%==1 %gdrive% download --path %rom% 163o-zQcBXDGS6sMlU9XOVCqX2nezYDME >nul || %error_download% DFE && pause>nul && goto :DFE
 if %dfe%==2 goto :Next
 CLS
-%echo%Убедитесь, что вы загрузились в рекавери, ввели пароль, если требовалось, и перевели телефон в режим adb sideload
+%echo%╨г╨▒╨╡╨┤╨╕╤В╨╡╤Б╤М, ╤З╤В╨╛ ╨▓╤Л ╨╖╨░╨│╤А╤Г╨╖╨╕╨╗╨╕╤Б╤М ╨▓ ╤А╨╡╨║╨░╨▓╨╡╤А╨╕, ╨▓╨▓╨╡╨╗╨╕ ╨┐╨░╤А╨╛╨╗╤М, ╨╡╤Б╨╗╨╕ ╤В╤А╨╡╨▒╨╛╨▓╨░╨╗╨╛╤Б╤М, ╨╕ ╨┐╨╡╤А╨╡╨▓╨╡╨╗╨╕ ╤В╨╡╨╗╨╡╤Д╨╛╨╜ ╨▓ ╤А╨╡╨╢╨╕╨╝ adb sideload
 echo.
 pause
 CLS
-%echo%Установка DFE...
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ DFE...
 %adb% sideload %~dp0%rom%\DFE.zip || %error_flash% DFE && del /f /q %~dp0%rom%\DFE.zip&& pause>nul && goto :DFE)
 :Next
 if %rom%==PPUI ping -n 15 127.0.0.1 >nul && %adb% reboot
@@ -486,24 +486,24 @@ if exist %~dp0GApps\gapps_a%android_ver%_*.zip goto :GApps_Flash
 
 :Reboot_MIUI
 CLS
-%echo%Перезагрузка...
+%echo%╨Я╨╡╤А╨╡╨╖╨░╨│╤А╤Г╨╖╨║╨░...
 echo.
 set rebooting_miui=1
 %fastboot% -w              || %error_format% data       && pause>nul && goto :Tools
-%fastboot% reboot recovery || %error_reboot% в recovery && pause>nul && goto :Tools
-%echo%Успешно.
+%fastboot% reboot recovery || %error_reboot% ╨▓ recovery && pause>nul && goto :Tools
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 echo.
 pause>nul && exit
 
 :GApps_Question
 CLS
-%echo%Cкачать GApps?
+%echo%C╨║╨░╤З╨░╤В╤М GApps?
 echo.
-if %android_ver% NEQ 12 (echo.1^) Да, pico) else (echo.1^) Да)
-if %android_ver% NEQ 12 (echo.2^) Да, nano ^(вариант, если нужен OK Google^)) else (echo.1^) Да, c OK Google)
-echo.3) Нет
+if %android_ver% NEQ 12 (echo.1^) ╨Ф╨░, pico) else (echo.1^) ╨Ф╨░)
+if %android_ver% NEQ 12 (echo.2^) ╨Ф╨░, nano ^(╨▓╨░╤А╨╕╨░╨╜╤В, ╨╡╤Б╨╗╨╕ ╨╜╤Г╨╢╨╡╨╜ OK Google^)) else (echo.1^) ╨Ф╨░, c OK Google)
+echo.3) ╨Э╨╡╤В
 echo.
-set /p gapps="Ваш выбор: "
+set /p gapps="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %gapps% NEQ 1 if %gapps% NEQ 2 if %gapps% NEQ 3 goto :GApps_Question
 if %gapps%==1 set gapps_ver=pico&& set g_assist=0
 if %gapps%==2 set gapps_ver=nano&& set g_assist=1
@@ -524,11 +524,11 @@ for /f "usebackq delims=" %%a in (%~dp0GApps\link.txt) do set date_download=%%a
 set date_download=!date_download:~58,8!)
 if %android_ver%==12 (for /f "tokens=2 delims= " %%a in ('find /i "GAppsA12" versions.txt') do set date_download=%%a)
 CLS
-%echo%Скачивание GApps...
+%echo%╨б╨║╨░╤З╨╕╨▓╨░╨╜╨╕╨╡ GApps...
 if %android_ver%==12 (%gdrive% download --path "GApps" 19M4a78dSDmfoCyvWL5nxHAj3AvSe-BQ3 || %error_download% GApps && pause>nul && exit
 if %g_assist%==1 %gdrive% download --path "GApps" 16Hor7wqraG2yWa0f9jOkOkTHv78jlPiH || %error_download% Voice Match addon && pause>nul && exit)
 if %android_ver% NEQ 12 %curl% -L -o %~dp0GApps\gapps_a%android_ver%_%gapps_ver%_!date_download!.zip https://downloads.sourceforge.net/project/opengapps/arm64/!date_download!/open_gapps-arm64-%android_ver%.0-%gapps_ver%-!date_download!.zip
-%echo%Успешно.
+%echo%╨г╤Б╨┐╨╡╤И╨╜╨╛.
 del /f /q %~dp0GApps\link.txt && del /f /q %~dp0GApps\opengapps
 if %upd_gapps%==1 if %clear_flash_custom%==1 goto :Download_Custom
 if %upd_gapps%==1 if %clear_flash_custom%==2 goto :Download_MIUI
@@ -540,21 +540,21 @@ for /f "tokens=1-22 delims=_" %%a in ('echo.!name!') do set date_downloaded=%%d
 for /f "tokens=1-22 delims=_" %%a in ('echo.!name!') do set gapps_ver=%%c
 if %android_ver%==12 set gapps_ver=bit
 CLS
-%echo%Установить GApps?
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨╕╤В╤М GApps?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p install_gapps="Ваш выбор: "
+set /p install_gapps="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %install_gapps% NEQ 1 if %install_gapps% NEQ 2 goto :GApps_flash
 if %install_gapps%==2 %adb% reboot
 if %install_gapps%==2 goto :Open_post
 CLS
-%echo%Убедитесь, что вы загрузились в рекавери, ввели пароль, если требовалось, и перевели телефон в режим adb sideload
+%echo%╨г╨▒╨╡╨┤╨╕╤В╨╡╤Б╤М, ╤З╤В╨╛ ╨▓╤Л ╨╖╨░╨│╤А╤Г╨╖╨╕╨╗╨╕╤Б╤М ╨▓ ╤А╨╡╨║╨░╨▓╨╡╤А╨╕, ╨▓╨▓╨╡╨╗╨╕ ╨┐╨░╤А╨╛╨╗╤М, ╨╡╤Б╨╗╨╕ ╤В╤А╨╡╨▒╨╛╨▓╨░╨╗╨╛╤Б╤М, ╨╕ ╨┐╨╡╤А╨╡╨▓╨╡╨╗╨╕ ╤В╨╡╨╗╨╡╤Д╨╛╨╜ ╨▓ ╤А╨╡╨╢╨╕╨╝ adb sideload
 echo.
 pause
 CLS
-%echo%Установка GApps...
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ GApps...
 echo.
 set flashing_gapps=1
 %adb% sideload %~dp0GApps\gapps_a%android_ver%_%gapps_ver%_%date_downloaded%.zip || %error_flash% GApps && pause>nul && goto :GApps_Flash
@@ -563,35 +563,35 @@ if %android_ver%==12 if %clear_flash_custom%==2 if %g_assis%t==1 goto :G_Assista
 if %android_ver% LSS 12 goto :Success
 :Question_assistant
 CLS
-%echo%Установить аддон для для работы гугл ассистента?
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨╕╤В╤М ╨░╨┤╨┤╨╛╨╜ ╨┤╨╗╤П ╨┤╨╗╤П ╤А╨░╨▒╨╛╤В╤Л ╨│╤Г╨│╨╗ ╨░╤Б╤Б╨╕╤Б╤В╨╡╨╜╤В╨░?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p g_assist="Ваш выбор: "
+set /p g_assist="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %g_assist% NEQ 1 if %g_assist% NEQ 2 goto :Question_assistant
 if %g_assist%==2 goto :Success
 :G_Assistant_Flash
 CLS
-%echo%Вернитесь в меню Advanced и вновь нажмите на ADB Sideload
+%echo%╨Т╨╡╤А╨╜╨╕╤В╨╡╤Б╤М ╨▓ ╨╝╨╡╨╜╤О Advanced ╨╕ ╨▓╨╜╨╛╨▓╤М ╨╜╨░╨╢╨╝╨╕╤В╨╡ ╨╜╨░ ADB Sideload
 echo.
 pause && CLS
-%echo%Установка аддона для работы гугл ассистента...
-%adb% sideload %~dp0GApps\Addon_assistant.zip || %error_flash% аддона для работы гугл ассистента && pause>nul && goto :G_Assistant_Flash
+%echo%╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨░╨┤╨┤╨╛╨╜╨░ ╨┤╨╗╤П ╤А╨░╨▒╨╛╤В╤Л ╨│╤Г╨│╨╗ ╨░╤Б╤Б╨╕╤Б╤В╨╡╨╜╤В╨░...
+%adb% sideload %~dp0GApps\Addon_assistant.zip || %error_flash% ╨░╨┤╨┤╨╛╨╜╨░ ╨┤╨╗╤П ╤А╨░╨▒╨╛╤В╤Л ╨│╤Г╨│╨╗ ╨░╤Б╤Б╨╕╤Б╤В╨╡╨╜╤В╨░ && pause>nul && goto :G_Assistant_Flash
 :Success
 %adb% reboot
 echo. 
-echo.Успешно.
+echo.╨г╤Б╨┐╨╡╤И╨╜╨╛.
 set flashing_gapps=0
 
 :Open_post
 CLS
-%echo%Открыть пост с прошивкой?
+%echo%╨Ю╤В╨║╤А╤Л╤В╤М ╨┐╨╛╤Б╤В ╤Б ╨┐╤А╨╛╤И╨╕╨▓╨║╨╛╨╣?
 echo.
-echo.1) Да
-echo.2) Нет
+echo.1) ╨Ф╨░
+echo.2) ╨Э╨╡╤В
 echo.
-set /p open_post="Ваш выбор: "
+set /p open_post="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %open_post% NEQ 1 if %open_post% NEQ 2 goto :Open_post
 if %open_post%==2 exit
 powershell -Command "& {Start-Process '!post_link!'}"
@@ -605,12 +605,12 @@ pause>nul && del /f /q MIUI%miui_ver%\*.img >nul && del /f /q MIUI%miui_ver%\*.t
 
 :Disclaimer2
 CLS
-%echo%ИСПОЛЬЗУЙТЕ ТОЛЬКО В СЛУЧАЕ, ЕСЛИ У ВАС УЖЕ УСТАНОВЛЕН %display_rom%^^!
+%echo%╨Ш╨б╨Я╨Ю╨Ы╨м╨Ч╨г╨Щ╨в╨Х ╨в╨Ю╨Ы╨м╨Ъ╨Ю ╨Т ╨б╨Ы╨г╨з╨Р╨Х, ╨Х╨б╨Ы╨Ш ╨г ╨Т╨Р╨б ╨г╨Ц╨Х ╨г╨б╨в╨Р╨Э╨Ю╨Т╨Ы╨Х╨Э %display_rom%^^!
 echo.
-echo.1) Продолжить
-echo.2) Назад
+echo.1) ╨Я╤А╨╛╨┤╨╛╨╗╨╢╨╕╤В╤М
+echo.2) ╨Э╨░╨╖╨░╨┤
 echo.
-set /p clear_flash_custom="Ваш выбор: "
+set /p clear_flash_custom="╨Т╨░╤И ╨▓╤Л╨▒╨╛╤А: "
 if %clear_flash_custom% NEQ 1 if %clear_flash_custom% NEQ 2 goto :Disclaimer2
 if %clear_flash_custom%==1 goto :Custom_update
 if %clear_flash_custom%==2 goto :Choice2
