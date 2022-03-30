@@ -46,7 +46,7 @@ set 7z_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia
 set curl_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/curl_32.zip)
 if exist Tools\ok.txt (set first_run=0) else (set first_run=1)
 if %first_run%==1 powershell -Command "& {!pshdownload!'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/dummy','%temp%\dummy')}" && del /f /q %temp%\dummy
-set ver_script=1.0
+set ver_script=1.1
 set g_assist=0
 set dfe=0
 set date_downloaded=0
