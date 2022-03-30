@@ -213,7 +213,7 @@ set id_rom=1tPh-APvr4ZKf9_IAy0JMRjK7oB_b1Mf1
 set android_ver=11)
 if %rom%==PPUI (set display_rom=PPUI A12
 set "post_link=https://t.me/ppui_begonia/884"
-set id_rom=1E_LkTuivR17XGwGt9pp6MiGY5x1wG63u
+set id_rom=1GlNd-60boDxtIFzmP_vCA9wPeXOE6dbt
 set android_ver=12)
 if %rom%==crDroid6 (set display_rom=crDroid 6.25 Non-CFW
 set "post_link=https://4pda.to/forum/index.php?showtopic=974421&st=1480#entry97822397"
