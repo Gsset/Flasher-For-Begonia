@@ -103,6 +103,7 @@ if %flashing_miui%==1 goto :Flash_MIUI
 :Script_update
 if exist versions.txt del /f /q versions.txt
 if exist update.bat del /f /q update.bat
+ping -n 2 127.0.0.1 >nul
 powershell -Command "& {Invoke-WebRequest 'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/versions.txt' -outfile versions.txt}">nul
 if not exist versions.txt %error_download% списка версий && pause>nul && exit /b /1
 for /f "tokens=2 delims= " %%a in ('find /i "script" versions.txt') do set new_ver_script=%%a
