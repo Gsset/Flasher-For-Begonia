@@ -46,7 +46,7 @@ set 7z_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia
 set curl_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/curl_32.zip)
 if exist Tools\ok.txt (set first_run=0) else (set first_run=1)
 if %first_run%==1 powershell -Command "& {!pshdownload!'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/dummy','%temp%\dummy')}" && del /f /q %temp%\dummy
-set ver_script=1.1
+set ver_script=1.2
 set g_assist=0
 set dfe=0
 set date_downloaded=0
@@ -113,6 +113,9 @@ CLS
 echo.
 echo.1) Да
 echo.2) Нет
+%echo%Чейнджлог:
+echo.
+%curl% https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/last_changelog
 echo.
 set /p upd_script="Ваш выбор: "
 if %upd_script% NEQ 1 if %upd_script% NEQ 2 goto :Question1
