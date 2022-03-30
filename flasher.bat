@@ -474,7 +474,7 @@ echo.2^) Нет
 echo.
 set /p dfe="Ваш выбор: "
 if %dfe% NEQ 1 if %dfe% NEQ 2 goto :DFE
-if %dfe%==1 %gdrive% download --path %rom% 163o-zQcBXDGS6sMlU9XOVCqX2nezYDME >nul || %error_download% DFE && pause>nul && goto :DFE
+if %dfe%==1 if not exist %rom%/DFE.zip %gdrive% download --path %rom% 163o-zQcBXDGS6sMlU9XOVCqX2nezYDME >nul || %error_download% DFE && pause>nul && goto :DFE
 if %dfe%==2 goto :Next
 CLS
 %echo%Убедитесь, что вы загрузились в рекавери, ввели пароль, если требовалось, и перевели телефон в режим adb sideload
