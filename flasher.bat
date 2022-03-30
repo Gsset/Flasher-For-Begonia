@@ -111,6 +111,7 @@ if not %new_ver_script% GTR %ver_script% goto :Adaptation
 :Question1
 CLS
 %echo%Доступна новая версия Flasher, скачать?
+echo.(текущая - %ver_script%; актуальная - %new_ver_script%)
 echo.
 echo.1) Да
 echo.2) Нет
