@@ -48,7 +48,7 @@ if exist Tools\ok.txt (set first_run=0) else (set first_run=1)
 if %first_run%==1 powershell -Command "& {!pshdownload!'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/dummy','%temp%\dummy')}" && del /f /q %temp%\dummy
 set ver_script=1.2
 set g_assist=0
-set dfe=0
+set dfe=2
 set date_downloaded=0
 set upd_script=2
 set upd_miui=2
@@ -367,6 +367,7 @@ if %clear_flash_custom%==1 goto :Flash_Custom
 
 :Flash_MIUI
 CLS
+REM goto skip1
 %echo%Проверка модели вашего смартфона и статуса блокировки загрузчика...
 %echo%Переведите ваш смартфон в режим fastboot и подключите к компьютеру
 %fastboot% getvar product  2>&1 | findstr /r /c:"^product: *begonia" || echo.Неподходящее устройство && rmdir /s /q %~dp0 && pause>nul && exit /B 1
@@ -375,7 +376,6 @@ CLS
 %echo%Установка MIUI %miui_ver%...
 echo.
 set flashing_miui=1
-REM goto skip1
 %fastboot% erase boot     || %error_erase% boot     && pause>nul && goto :Tools
 %fastboot% erase expdb    || %error_erase% expdb    && pause>nul && goto :Tools
 %fastboot% erase metadata || %error_erase% metadata && pause>nul && goto :Tools
@@ -419,10 +419,10 @@ if %rom%==MIUI goto :Reboot_MIUI
 :Flash_Custom
 CLS
 %echo%Установка %display_rom%...
+REM goto skip2
 set flashing_custom=1
 %fastboot% reboot bootloader || %error_reboot% в bootloader>nul && pause>nul && goto :Tools
 ping -n 2 127.0.0.1 >nul
-REM goto skip2
 %fastboot% erase system  || %error_erase% system  && pause>nul && goto :Tools
 %fastboot% erase vendor  || %error_erase% vendor  && pause>nul && goto :Tools
 REM %fastboot% flash sparsecrclist %~dp0%rom%\sparsecrclist.txt || %error_flash% sparsecrclist && pause>nul && del /f /q %~dp0%rom%\*.img && goto :Unpack_Custom
@@ -459,18 +459,19 @@ if not %rom%==crDroid6 goto :Clearing
 :Clearing
 if %clear_flash_custom%==2 %fastboot% -w || %error_format% data && pause>nul && goto :Tools
 if %clear_flash_custom%==1 %fastboot% erase cache || %error_erase% cache && pause>nul && goto :Tools
-:skip2
 %fastboot% reboot recovery || %error_reboot% в recovery && pause>nul && goto :Tools
+:skip2
 %echo%Успешно.
 set flashing_custom=0
 del /f /s /q %~dp0%rom%\*.7z
 :DFE
-if %android_ver%==12 (CLS
+if %android_ver% NEQ 12 goto :Next
+CLS
 %echo%Скачать и установить DFE?
 if %clear_flash_custom%==1 %echo%Требуется только в случае, если он был установлен ранее^^!
 echo.
-echo.1^) Да
-echo.2^) Нет
+echo.1) Да
+echo.2) Нет
 echo.
 set /p dfe="Ваш выбор: "
 if %dfe% NEQ 1 if %dfe% NEQ 2 goto :DFE
@@ -482,7 +483,7 @@ echo.
 pause
 CLS
 %echo%Установка DFE...
-%adb% sideload %~dp0%rom%\DFE.zip || %error_flash% DFE && del /f /q %~dp0%rom%\DFE.zip&& pause>nul && goto :DFE)
+%adb% sideload %~dp0%rom%\DFE.zip || %error_flash% DFE && del /f /q %~dp0%rom%\DFE.zip&& pause>nul && goto :DFE
 :Next
 if %rom%==PPUI ping -n 15 127.0.0.1 >nul && %adb% reboot
 if %rom%==PPUI goto :Open_post
