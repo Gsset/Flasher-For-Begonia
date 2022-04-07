@@ -38,14 +38,14 @@ set pshdownload=$p = [Enum]::ToObject([System.Net.SecurityProtocolType], 3072) ^
 [System.Net.ServicePointManager]::SecurityProtocol = $p ^
 
 (New-Object Net.WebClient).DownloadFile(
-if %bitness%==64 (set gdrive_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/gdrive_64.exe
-set 7z_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/7za_64.exe
-set curl_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/curl_64.zip)
-if %bitness%==32 (set gdrive_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/gdrive_32.exe
-set 7z_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/7za_32.exe
-set curl_link=https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/curl_32.zip)
+if %bitness%==64 (set gdrive_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/gdrive_64.exe
+set 7z_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/7za_64.exe
+set curl_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/curl_64.zip)
+if %bitness%==32 (set gdrive_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/gdrive_32.exe
+set 7z_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/7za_32.exe
+set curl_link=https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/curl_32.zip)
 if exist Tools\ok.txt (set first_run=0) else (set first_run=1)
-if %first_run%==1 powershell -Command "& {!pshdownload!'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/dummy','%temp%\dummy')}" && del /f /q %temp%\dummy
+if %first_run%==1 powershell -Command "& {!pshdownload!'https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/dummy','%temp%\dummy')}" && del /f /q %temp%\dummy
 set ver_script=1.2
 set g_assist=0
 set dfe=2
@@ -88,7 +88,7 @@ powershell -Command "& {Invoke-WebRequest !curl_link! -outfile Tools\curl.zip}" 
 powershell -Command "& {Invoke-WebRequest !7z_link! -outfile Tools\7z.exe}"     || %error_download% 7zip && pause>nul && goto :Tools
 %zip% e "Tools\curl.zip" -o"Tools\">nul || %error_unpack% curl && pause>nul && goto :Tools
 %curl% -o Tools\gdrive.exe !gdrive_link! || %error_download% gdrive_tool && pause>nul && goto Tools
-%curl% -o Tools\platform_tools.zip https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/tools/platfrorm_tools.zip || %error_download% Platform Tools && pause>nul && goto Tools
+%curl% -o Tools\platform_tools.zip https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/tools/platfrorm_tools.zip || %error_download% Platform Tools && pause>nul && goto Tools
 %zip% e "Tools\platform_tools.zip" -o"Tools\">nul || %error_unpack% Platform Tools && pause>nul && goto :Tools
 del /f /q Tools\platform_tools.zip
 del /f /q Tools\curl.zip
@@ -104,7 +104,7 @@ if %flashing_miui%==1 goto :Flash_MIUI
 if exist versions.txt del /f /q versions.txt
 if exist update.bat del /f /q update.bat
 ping -n 2 127.0.0.1 >nul
-powershell -Command "& {Invoke-WebRequest 'https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/versions.txt' -outfile versions.txt}">nul
+powershell -Command "& {Invoke-WebRequest 'https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/versions.txt' -outfile versions.txt}">nul
 if not exist versions.txt %error_download% списка версий && pause>nul && exit /b /1
 for /f "tokens=2 delims= " %%a in ('find /i "script" versions.txt') do set new_ver_script=%%a
 if not %new_ver_script% GTR %ver_script% goto :Adaptation
@@ -117,7 +117,7 @@ echo.1) Да
 echo.2) Нет
 %echo%Чейнджлог:
 echo.
-%curl% https://raw.githubusercontent.com/Gsset/Fastboot-Flasher-For-Begonia/main/last_changelog
+%curl% https://raw.githubusercontent.com/Gsset/Flasher-For-Begonia/main/last_changelog
 echo.
 set /p upd_script="Ваш выбор: "
 if %upd_script% NEQ 1 if %upd_script% NEQ 2 goto :Question1
