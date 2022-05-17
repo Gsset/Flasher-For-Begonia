@@ -1,11 +1,5 @@
-script 1.3
-MIUI12.5 1251
-crDroid_GSI 711
+script 2.0
 crDroid6 625
 Lineage 181
-crDroid8 81
-crDroid7 0
-PPUI 44
-RR 873
-MIUI12 1208
-GAppsA12 20220126
+crDroid7 718
+PPUI 45
